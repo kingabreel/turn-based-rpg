@@ -1,4 +1,4 @@
-package view.abilities;
+package model.abilities;
 
 public class ActiveEffect {
     private int rounds;

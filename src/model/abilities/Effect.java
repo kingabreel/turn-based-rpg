@@ -1,7 +1,5 @@
-package view.abilities;
+package model.abilities;
 
-
-import java.util.List;
 
 public enum Effect {
     POISON(new ActiveEffect()),

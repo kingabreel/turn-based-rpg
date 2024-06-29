@@ -1,7 +1,7 @@
-package view;
+package model;
 
-import view.abilities.Effect;
-import view.types.EnemyType;
+import model.abilities.Effect;
+import model.types.EnemyType;
 
 import java.util.List;
 

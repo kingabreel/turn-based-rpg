@@ -1,6 +1,6 @@
-package view;
+package model;
 
-import view.abilities.Effect;
+import model.abilities.Effect;
 
 import java.util.List;
 

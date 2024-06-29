@@ -1,6 +1,6 @@
-package view.types;
+package model.types;
 
-import view.abilities.Skill;
+import model.abilities.Skill;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,6 @@
-package view;
+package model;
 
-import view.types.PlayerType;
+import model.types.PlayerType;
 
 import java.util.ArrayList;
 
