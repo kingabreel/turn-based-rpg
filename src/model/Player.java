@@ -9,7 +9,7 @@ public class Player extends Character{
     private int xp;
 
     public Player(String name, PlayerType type) {
-        super(name, 0, 10, true, 5, 5, 5, new ArrayList<>());
+        super(name, 0, type.getLife(), true, type.getMagicDefense(), type.getPhysicalDefense(), 5, new ArrayList<>());
         this.type = type;
         this.xp = 0;
     }

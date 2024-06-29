@@ -2,15 +2,43 @@ package model.abilities;
 
 
 public enum Effect {
-    POISON(new ActiveEffect()),
-    FIRE(new ActiveEffect()),
-    SLEEP(new ActiveEffect()),
-    STUN(new ActiveEffect()),
-    BLIND(new ActiveEffect());
+    POISON(3, 5, 5),
+    FIRE(2, 5, 4),
+    SLEEP(1, 0, 100),
+    STUN(1, 0, 100),
+    BLIND(3, 0, 50);
 
-    private final ActiveEffect activeEffect;
+    private int damage;
+    private int rounds;
+    private int missRateAttack;
 
-    Effect(ActiveEffect activeEffect) {
-        this.activeEffect = activeEffect;
+    Effect(int rounds, int damage, int missRateAttack) {
+        this.damage = damage;
+        this.rounds = rounds;
+        this.missRateAttack = missRateAttack;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
+    }
+
+    public int getMissRateAttack() {
+        return missRateAttack;
+    }
+
+    public void setMissRateAttack(int missRateAttack) {
+        this.missRateAttack = missRateAttack;
     }
 }
