@@ -85,7 +85,7 @@ public class GameController {
     }
 
     public boolean battleOrXp(){
-        return random.nextBoolean();
+        return random.nextInt(4) == 0;
     }
 
     public void startBattle(){
@@ -146,6 +146,7 @@ public class GameController {
                     enemy.setAlive(false);
                     updateBattleIndex();
                     System.out.println("Inimigo derrotado, " + enemy.getXpReward() + "xp recebidos.");
+                    player.checkLevelUp();
                 }
 
                 turn *= -1;
@@ -166,7 +167,7 @@ public class GameController {
                 }
                 turn *= -1;
             }
-            System.out.println("===============");
+            System.out.println("===================");
         }
     }
 

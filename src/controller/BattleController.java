@@ -13,8 +13,10 @@ public class BattleController {
     private Player player;
     private Enemy enemy;
     private boolean battleRunning;
-    private boolean activePlayerShield = false, activeEnemyShield = false;
-    private int playerShieldTurns = 0, enemyShieldTurn = 0;
+    private boolean activePlayerShield = false;
+    private boolean activeEnemyShield = false;
+    private int playerShieldTurns = 0;
+    private int enemyShieldTurn = 0;
 
 
     public BattleController(Player player, Enemy enemy) {
@@ -25,8 +27,8 @@ public class BattleController {
     public int attack(int turn, int attackIndex) {
         if (turn == 1){
             return (this.player.getType() == PlayerType.MAGE || this.player.getType() == PlayerType.DRUID) ?
-                    this.player.getType().getAbilities().get(attackIndex).getBaseDamage() + this.player.getBaseDamage() - enemy.getMagicDefense() :
-                    this.player.getType().getAbilities().get(attackIndex).getBaseDamage() + this.player.getBaseDamage() - enemy.getPhysicalDefense();
+                    this.player.getType().getAbilities().get(attackIndex).getBaseDamage() + this.player.getBaseDamage() - (enemy.getMagicDefense() / 3) :
+                    this.player.getType().getAbilities().get(attackIndex).getBaseDamage() + this.player.getBaseDamage() - (enemy.getPhysicalDefense() / 3);
         } else {
             return (enemy.getEnemyType() == EnemyType.GHOST || enemy.getEnemyType() == EnemyType.DEMON ||
                     enemy.getEnemyType() == EnemyType.DRAGON) ? enemy.getEnemyType().getAbilities().get(attackIndex).getBaseDamage() +
@@ -117,8 +119,8 @@ public class BattleController {
     }
 
     private void addShieldTurn(int turn){
-        if (turn == 1) playerShieldTurns += 2;
-        else enemyShieldTurn += 2;
+        if (turn == 1) playerShieldTurns += 1;
+        else enemyShieldTurn += 1;
     }
 
     public int getPlayerShieldTurns() {

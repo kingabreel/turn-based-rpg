@@ -76,10 +76,15 @@ public class WindowGame {
 
         if (gm.battleOrXp()) {
             Random random = new Random();
+            int xpGanho = random.nextInt(20);
 
-            gm.getPlayer().setXp(gm.getPlayer().getXp() + random.nextInt(20));
+            System.out.println("Nenhum monstro encontrado! ");
+            gm.getPlayer().setXp(gm.getPlayer().getXp() + xpGanho);
+            System.out.println(xpGanho + "xp ganho!");
+            gm.getPlayer().checkLevelUp();
         } else {
             gm.startBattle();
         }
+        System.out.println("====================");
     }
 }
