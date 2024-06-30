@@ -7,7 +7,7 @@ import java.util.List;
 
 public enum EnemyType {
     GOBLIN(Arrays.asList(
-            new Skill("Strike", 3, 0.05, false, 0, 0),
+            new Skill("Strike", 5, 0.05, false, 0, 0),
             new Skill("Dodge", 0, 0.0, false, 0, 10)
     )),
     ORC(Arrays.asList(
@@ -15,11 +15,11 @@ public enum EnemyType {
             new Skill("Rage", 2, 0.0, false, 0, 0)
     )),
     TROLL(Arrays.asList(
-            new Skill("Attack", 4, 0.2, false, 0, 0),
-            new Skill("Regenerate", 0, 0.0, true, 5, 0)
+            new Skill("Attack", 8, 0.2, false, 0, 0),
+            new Skill("Regenerate", 0, 0.0, true, 12, 0)
     )),
     VAMPIRE( Arrays.asList(
-            new Skill("Blood Suck", 5, 0.15, true, 5, 2),
+            new Skill("Blood Suck", 3, 0.15, true, 5, 2),
             new Skill("Bat", 7, 0.1, true, 0, 0)
     )),
     WEREWOLF(Arrays.asList(
@@ -35,12 +35,12 @@ public enum EnemyType {
             new Skill("Infect", 0, 0.0, false, 0, 5)
     )),
     GHOST(Arrays.asList(
-            new Skill("Scream", 25, 0.1, true, 0, 0),
+            new Skill("Scream", 13, 0.1, true, 0, 0),
             new Skill("Possess", 0, 0.0, true, 0, 10)
     )),
     DRAGON(Arrays.asList(
-            new Skill("Fire Breath", 40, 0.25, true, 0, 0),
-            new Skill("Tail Swipe", 35, 0.1, false, 0, 0)
+            new Skill("Fire Breath", 15, 0.25, true, 0, 0),
+            new Skill("Tail Swipe", 23, 0.1, false, 0, 0)
     )),
     DEMON(Arrays.asList(
             new Skill("Hellfire", 14, 0.2, true, 0, 0),

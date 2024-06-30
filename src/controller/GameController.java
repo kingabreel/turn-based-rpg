@@ -97,10 +97,14 @@ public class GameController {
         EnemyType[] enemies = EnemyType.values();
         int randomIndex = random.nextInt(enemies.length);
 
+        EnemyType enemyType = enemies[randomIndex];
+        if (enemyType.equals(EnemyType.DRAGON) && getBattleIndex() % 10 == 0) enemyType = enemies[random.nextInt(enemies.length)];
+        if (getBattleIndex() == 10) enemyType = EnemyType.DRAGON;
+
         Enemy enemy = new Enemy(enemyName[random.nextInt(49)], random.nextInt(player.getLevel() + 3),
                 random.nextInt(player.getLife() + 30), true, random.nextInt(player.getMagicDefense() + 20),
                 random.nextInt(player.getPhysicalDefense() + 20), random.nextInt(player.getBaseDamage() + 30),
-                new ArrayList<>(), enemies[randomIndex]);
+                new ArrayList<>(), enemyType);
 
         enemy.setXpReward(random.nextInt(10, 101));
         this.enemy = enemy;
