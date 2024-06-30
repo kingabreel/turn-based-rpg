@@ -12,6 +12,7 @@ public class Character {
     private int magicDefense;
     private int physicalDefense;
     private int baseDamage;
+    private int shield;
     private List<Effect> effects;
 
     public Character(String name, int level, int life, boolean alive, int magicDefense, int physicalDefense, int baseDamage, List<Effect> effects) {
@@ -83,5 +84,13 @@ public class Character {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public int getShield() {
+        return shield;
+    }
+
+    public void setShield(int shield) {
+        this.shield = shield;
     }
 }

@@ -17,13 +17,13 @@ public class GameController {
     private final Scanner scanner;
     private int turn;
 
-    String[] paths = {"Floresta Negra", "Floresta Comum", "Deserto", "Lago", "Pântano", "Montanha Gelada", "Caverna Sombria", "Praia Deserta",
+    private final String[] paths = {"Floresta Negra", "Floresta Comum", "Deserto", "Lago", "Pântano", "Montanha Gelada", "Caverna Sombria", "Praia Deserta",
             "Cidade Abandonada", "Ruínas Antigas", "Vale Místico", "Planície Serena", "Cânion Profundo", "Ilha Misteriosa", "Vila Fantasma",
             "Floresta Encantada", "Caverna de Cristal", "Deserto de Areia", "Templo Esquecido", "Montanha dos Dragões", "Praia dos Náufragos",
             "Pântano Venenoso", "Bosque das Fadas", "Vulcão Ativo", "Ruínas Submersas", "Caverna dos Goblins", "Campo de Batalha",
             "Floresta de Pinheiros", "Lago Congelado", "Praia de Conchas"};
 
-    String[] enemyName = {"Goruk", "Thrag", "Zoltar", "Ragnar", "Morgana", "Vlad", "Zara", "Krug", "Drake", "Nimue", "Hagor", "Xara", "Brutus",
+    private final String[] enemyName = {"Goruk", "Thrag", "Zoltar", "Ragnar", "Morgana", "Vlad", "Zara", "Krug", "Drake", "Nimue", "Hagor", "Xara", "Brutus",
             "Elara", "Fang", "Ulric", "Selene", "Gorn", "Luna", "Balor", "Draug", "Ravena", "Orin", "Lyra", "Torek", "Nyx", "Grimm", "Morwen",
             "Thorn", "Yara", "Axel", "Zira", "Galen", "Freyja", "Sargon", "Kira", "Thalia", "Magnus", "Rhea", "Vorn", "Astrid", "Thorg",
             "Helga", "Zarek", "Loki", "Fenrir", "Osric", "Ivy", "Bryn"};
@@ -123,6 +123,12 @@ public class GameController {
 
         while (battle.isBattleRunning()){
             if (turn == 1) {
+                if (battle.getPlayerShieldTurns() == 1) {
+                    player.setShield(0);
+                    battle.setPlayerShieldTurns(0);
+                    battle.setActivePlayerShield(false);
+                }
+
                 System.out.println(player.getLife() + "hp" + "\t" + "Inimigo: " + enemy.getLife());
 
                 int choice = showBattleOptions(classOptions);
@@ -133,15 +139,25 @@ public class GameController {
                     enemy.setLife(0);
                     battle.setBattleRunning(false);
                     player.setXp(player.getXp() + enemy.getXpReward());
+                    enemy.setAlive(false);
+                    updateBattleIndex();
                     System.out.println("Inimigo derrotado, " + enemy.getXpReward() + "xp recebidos.");
                 }
+
                 turn *= -1;
             } else {
+                if (battle.getEnemyShieldTurn() == 1) {
+                    enemy.setShield(0);
+                    battle.setEnemyShieldTurn(0);
+                    battle.setActiveEnemyShield(false);
+                }
+
                 int enemyChoice = random.nextInt(2);
                 enemyAction(enemyChoice, battle);
 
                 if (player.getLife() <= 0){
                     player.setLife(0);
+                    player.setAlive(false);
                     battle.setBattleRunning(false);
                 }
                 turn *= -1;

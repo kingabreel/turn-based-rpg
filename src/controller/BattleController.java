@@ -13,6 +13,9 @@ public class BattleController {
     private Player player;
     private Enemy enemy;
     private boolean battleRunning;
+    private boolean activePlayerShield = false, activeEnemyShield = false;
+    private int playerShieldTurns = 0, enemyShieldTurn = 0;
+
 
     public BattleController(Player player, Enemy enemy) {
         this.player = player;
@@ -66,17 +69,26 @@ public class BattleController {
 
         boolean luckyDamage = random.nextBoolean();
         int realDamage = random.nextInt(3);
-
         if (turn == 1){
-            if (luckyDamage) enemy.setLife(enemy.getLife() - (damage + realDamage));
-            else enemy.setLife(enemy.getLife() - (damage - realDamage));
+            if (luckyDamage) {
+                enemy.setLife(enemy.getLife() - ((damage - enemy.getShield()) + realDamage));
+                System.out.println("Você causou " + (damage + realDamage) + " de dano");
 
-            System.out.println("Você causou " + (damage + realDamage));
+            } else {
+                enemy.setLife(enemy.getLife() - ((damage - enemy.getShield()) - realDamage));
+                System.out.println("Você causou " + (damage - realDamage) + " de dano");
+            }
+            if (enemy.getShield() != 0) System.out.println("Escudo protegeu " + enemy.getShield() + " pontos de dado");
         } else {
-            if (luckyDamage) player.setLife(player.getLife() - (damage + realDamage));
-            else player.setLife(player.getLife() - (damage - realDamage));
-            System.out.println("O inimigo causou " + (damage + realDamage) + " de dano em você");
+            if (luckyDamage) {
+                player.setLife(player.getLife() - ((damage - player.getShield()) + realDamage));
+                System.out.println("O inimigo causou " + (damage + realDamage) + " de dano em você");
 
+            } else {
+                player.setLife(player.getLife() - ((damage - player.getShield()) - realDamage));
+                System.out.println("O inimigo causou " + (damage - realDamage) + " de dano em você");
+            }
+            if (player.getShield() != 0) System.out.println("Escudo protegeu " + player.getShield() + " pontos de dano");
         }
     }
 
@@ -92,11 +104,44 @@ public class BattleController {
 
     public void calculateProtection(int protection, int turn){
         if (turn == 1) {
-            player.setLife(player.getLife() + protection);
+            player.setShield(protection);
+            addShieldTurn(turn);
+            activePlayerShield = true;
             System.out.println("Escudo de " + protection + " de resistência criado");
         } else {
-            enemy.setLife(enemy.getLife() + protection);
+            enemy.setShield(protection);
+            addShieldTurn(turn);
+            activeEnemyShield = true;
             System.out.println("Inimigo criou um escudo de " + protection + "de resistência");
         }
+    }
+
+    private void addShieldTurn(int turn){
+        if (turn == 1) playerShieldTurns += 2;
+        else enemyShieldTurn += 2;
+    }
+
+    public int getPlayerShieldTurns() {
+        return playerShieldTurns;
+    }
+
+    public void setPlayerShieldTurns(int playerShieldTurns) {
+        this.playerShieldTurns = playerShieldTurns;
+    }
+
+    public int getEnemyShieldTurn() {
+        return enemyShieldTurn;
+    }
+
+    public void setEnemyShieldTurn(int enemyShieldTurn) {
+        this.enemyShieldTurn = enemyShieldTurn;
+    }
+
+    public void setActivePlayerShield(boolean activePlayerShield) {
+        this.activePlayerShield = activePlayerShield;
+    }
+
+    public void setActiveEnemyShield(boolean activeEnemyShield) {
+        this.activeEnemyShield = activeEnemyShield;
     }
 }
