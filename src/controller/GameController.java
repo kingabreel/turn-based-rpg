@@ -14,7 +14,7 @@ public class GameController {
     private String playerName;
     private String playerClass;
     private Player player;
-    private List<Enemy> enemies;
+    private Enemy enemy;
     private int battleIndex = 1;
     Random random = new Random();
 
@@ -85,7 +85,6 @@ public class GameController {
     }
 
     public void startBatle(){
-        enemies = new ArrayList<>();
         createEnemy();
 
     }
@@ -99,13 +98,13 @@ public class GameController {
                 random.nextInt(player.getPhysicalDefense() + 20), random.nextInt(player.getBaseDamage() + 30),
                 new ArrayList<>(), enemies[randomIndex]);
 
-        this.enemies.add(enemy);
+        this.enemy = enemy;
         System.out.println("===Inimigo encontrado===");
         System.out.println(enemy);
         System.out.println("\n" + "Iniciando batalha");
     }
 
     private void battle(){
-
+        BattleController battle = new BattleController(player, enemy);
     }
 }
