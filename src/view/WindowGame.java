@@ -6,10 +6,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class WindowGame {
-    GameController gm = new GameController();
-    Scanner scanner = new Scanner(System.in);
+    GameController gm;
+    Scanner scanner;
 
     public WindowGame(String[] inputs){
+        scanner = new Scanner(System.in);
+        gm = new GameController(scanner);
+
         if (!gm.validInput(inputs)) settingsPlayer();
         gm.createPlayer();
 
@@ -76,7 +79,7 @@ public class WindowGame {
 
             gm.getPlayer().setXp(gm.getPlayer().getXp() + random.nextInt(20));
         } else {
-            gm.startBatle();
+            gm.startBattle();
         }
     }
 }

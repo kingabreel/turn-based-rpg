@@ -29,10 +29,10 @@ public class Enemy extends Character{
 
     @Override
     public String toString() {
-        return "Nome: " + getName() +
-                "Tipo: " + getEnemyType() +
-                "Hp: " + getLife() +
-                "Dano Base: " + getBaseDamage() +
+        return "Nome: " + getName() + "\n" +
+                "Tipo: " + getEnemyType() + "\n" +
+                "Hp: " + getLife() + "\n" +
+                "Dano Base: " + getBaseDamage() + "\n" +
                 "Recompensa: " + getXpReward();
     }
 }

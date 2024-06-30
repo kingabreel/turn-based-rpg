@@ -43,7 +43,7 @@ public enum EnemyType {
             new Skill("Tail Swipe", 35, 0.1, false, 0, 0)
     )),
     DEMON(Arrays.asList(
-            new Skill("Hellfire", 45, 0.2, true, 0, 0),
+            new Skill("Hellfire", 14, 0.2, true, 0, 0),
             new Skill("Dark Pact", 0, 0.0, true, 10, 15)
     ));
 
