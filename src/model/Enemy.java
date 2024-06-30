@@ -26,4 +26,13 @@ public class Enemy extends Character{
     public void setXpReward(int xpReward) {
         this.xpReward = xpReward;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getName() +
+                "Tipo: " + getEnemyType() +
+                "Hp: " + getLife() +
+                "Dano Base: " + getBaseDamage() +
+                "Recompensa: " + getXpReward();
+    }
 }

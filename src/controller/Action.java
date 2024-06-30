@@ -1,8 +1,8 @@
 package controller;
 
 public interface Action {
-    int attack();
-    int defense();
-    int heal();
+    int attack(boolean player);
+    int defense(boolean player);
+    int heal(boolean player);
     boolean run();
 }

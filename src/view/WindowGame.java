@@ -2,6 +2,7 @@ package view;
 
 import controller.GameController;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class WindowGame {
@@ -13,6 +14,9 @@ public class WindowGame {
         gm.createPlayer();
 
         menuWindow();
+        while (gm.getPlayer().isAlive()){
+            choosePath();
+        }
     }
 
     private void menuWindow(){
@@ -40,12 +44,39 @@ public class WindowGame {
                         3- Arqueiro,
                         4- Barbaro,
                         5- Druída
-                        \n""");
+                        """);
                 playerClass = scanner.nextInt();
                 if (playerClass > 5 || playerClass < 0) System.out.println("Classe inválida.");
             }
 
             gm.setPlayerClass(playerClass == 1 ? "MAGE" : playerClass == 2 ? "WARRIOR" : playerClass == 3 ? "ARCHER" : playerClass == 4 ? "BARBARIAN" : "DRUID");
+        }
+    }
+
+    private void choosePath(){
+        System.out.println("Três caminhos a se seguir: ");
+        String[] paths = new String[3];
+
+        for (int i = 0; i < 3; i++) {
+            String path = gm.getRandomPath();
+            System.out.println((i+1) + "- " + path);
+            paths[i] = path;
+        }
+
+        int escolha = 0;
+        while (escolha < 1 || escolha > 3){
+            System.out.print("Sua escolha: ");
+            escolha = scanner.nextInt();
+        }
+
+        System.out.println("Você segue pelo caminho: " + paths[escolha-1]);
+
+        if (gm.battleOrXp()) {
+            Random random = new Random();
+
+            gm.getPlayer().setXp(gm.getPlayer().getXp() + random.nextInt(20));
+        } else {
+            gm.startBatle();
         }
     }
 }
