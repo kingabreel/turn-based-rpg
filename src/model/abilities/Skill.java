@@ -7,14 +7,16 @@ public class Skill {
     private boolean magical;
     private int healAmount;
     private int protection;
+    private Effect effect;
 
-    public Skill(String name, int baseDamage, double criticalRate, boolean magical, int healAmount, int protection) {
+    public Skill(String name, int baseDamage, double criticalRate, boolean magical, int healAmount, int protection, Effect effect) {
         this.name = name;
         this.baseDamage = baseDamage;
         this.criticalRate = criticalRate;
         this.magical = magical;
         this.healAmount = healAmount;
         this.protection = protection;
+        this.effect = effect;
     }
 
     public String getName() {
@@ -63,5 +65,13 @@ public class Skill {
 
     public void setProtection(int protection) {
         this.protection = protection;
+    }
+
+    public Effect getEffect() {
+        return effect;
+    }
+
+    public void setEffect(Effect effect) {
+        this.effect = effect;
     }
 }

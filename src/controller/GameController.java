@@ -2,6 +2,7 @@ package controller;
 
 import model.Enemy;
 import model.Player;
+import model.abilities.Effect;
 import model.types.EnemyType;
 import model.types.PlayerType;
 
@@ -133,6 +134,11 @@ public class GameController {
                     battle.setActivePlayerShield(false);
                 }
 
+                if (player.getEffects().contains(Effect.STUN) || player.getEffects().contains(Effect.SLEEP)) {
+                    turn *= -1;
+                    continue;
+                }
+
                 System.out.println(player.getLife() + "hp" + "\t" + "Inimigo: " + enemy.getLife());
 
                 int choice = showBattleOptions(classOptions);
@@ -148,13 +154,16 @@ public class GameController {
                     System.out.println("Inimigo derrotado, " + enemy.getXpReward() + "xp recebidos.");
                     player.checkLevelUp();
                 }
-
-                turn *= -1;
             } else {
                 if (battle.getEnemyShieldTurn() == 1) {
                     enemy.setShield(0);
                     battle.setEnemyShieldTurn(0);
                     battle.setActiveEnemyShield(false);
+                }
+
+                if (enemy.getEffects().contains(Effect.STUN) || enemy.getEffects().contains(Effect.SLEEP)) {
+                    turn *= -1;
+                    continue;
                 }
 
                 int enemyChoice = random.nextInt(2);
@@ -165,8 +174,10 @@ public class GameController {
                     player.setAlive(false);
                     battle.setBattleRunning(false);
                 }
-                turn *= -1;
             }
+            battle.activateEffect();
+            battle.addEffect(turn);
+            turn *= -1;
             System.out.println("===================");
         }
     }

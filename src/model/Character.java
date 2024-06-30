@@ -2,6 +2,7 @@ package model;
 
 import model.abilities.Effect;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Character {
@@ -14,6 +15,7 @@ public class Character {
     private int baseDamage;
     private int shield;
     private List<Effect> effects;
+    private List<Integer> roundsPerEffect;
 
     public Character(String name, int level, int life, boolean alive, int magicDefense, int physicalDefense, int baseDamage, List<Effect> effects) {
         this.name = name;
@@ -24,6 +26,7 @@ public class Character {
         this.physicalDefense = physicalDefense;
         this.baseDamage = baseDamage;
         this.effects = effects;
+        this.roundsPerEffect = new ArrayList<>();
     }
 
     public String getName() {
@@ -68,6 +71,14 @@ public class Character {
 
     public void setEffects(List<Effect> effects) {
         this.effects = effects;
+    }
+
+    public List<Integer> getRoundsPerEffect() {
+        return roundsPerEffect;
+    }
+
+    public void setRoundsPerEffect(List<Integer> roundsPerEffect) {
+        this.roundsPerEffect = roundsPerEffect;
     }
 
     public int getLife() {
