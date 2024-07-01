@@ -1,6 +1,7 @@
 package controller;
 
 import model.Enemy;
+import model.Item;
 import model.Player;
 import model.abilities.Effect;
 import model.types.EnemyType;
@@ -301,5 +302,29 @@ public class GameController {
 
     private void calculateProtection(int action, BattleController battle){
         battle.calculateProtection(battle.defense(turn, action), turn);
+    }
+
+    public Item itemAfterBattle(){
+        int chance = random.nextInt(100);
+
+        if (chance < 20){
+            return getItem();
+        }
+        return null;
+    }
+
+    public Item itemAfterLuckyPath(){
+        int chance = random.nextInt(100);
+
+        if (chance > 95){
+            return getItem();
+        }
+        return null;
+    }
+
+    private Item getItem(){
+        Item[] itens = Item.values();
+        int itemIndex = random.nextInt(itens.length);
+        return itens[itemIndex];
     }
 }
