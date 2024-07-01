@@ -7,8 +7,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class WindowGame {
-    GameController gm;
-    Scanner scanner;
+    private final GameController gm;
+    private final Scanner scanner;
 
     public WindowGame(String[] inputs){
         scanner = new Scanner(System.in);
