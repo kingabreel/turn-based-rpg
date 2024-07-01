@@ -113,10 +113,8 @@ public class GameController {
 
         System.out.println("===Inimigo encontrado===");
         System.out.println(enemy);
-        System.out.println("""
 
-                Iniciando batalha
-                """);
+        System.out.println("\n" + "Iniciando batalha " + getBattleIndex());
     }
 
     private void battle(){
@@ -174,12 +172,13 @@ public class GameController {
                     player.setLife(0);
                     player.setAlive(false);
                     battle.setBattleRunning(false);
+                    System.out.println("=======** Game Over **=======");
                 }
             }
             battle.activateEffect();
             battle.addEffect(turn);
             turn *= -1;
-            System.out.println("===================");
+            System.out.println("====================");
         }
     }
 
@@ -326,5 +325,31 @@ public class GameController {
         Item[] itens = Item.values();
         int itemIndex = random.nextInt(itens.length);
         return itens[itemIndex];
+    }
+
+    public void addItemStats(){
+        Item[] arr = player.getEquipedItens();
+
+        for (Item item : arr) {
+            if (item != null) {
+                player.setLife(player.getLife() + item.getExtraLife());
+                player.setBaseDamage(player.getBaseDamage() + item.getExtraDamage());
+                player.setPhysicalDefense(player.getPhysicalDefense() + item.getExtraPhysicalDefense());
+                player.setMagicDefense(player.getMagicDefense() + item.getExtraMagicalDefense());
+            }
+        }
+    }
+
+    public void removeItemStats(){
+        Item[] arr = player.getEquipedItens();
+
+        for (Item item : arr) {
+            if (item != null) {
+                player.setLife(player.getLife() - item.getExtraLife());
+                player.setBaseDamage(player.getBaseDamage() - item.getExtraDamage());
+                player.setPhysicalDefense(player.getPhysicalDefense() - item.getExtraPhysicalDefense());
+                player.setMagicDefense(player.getMagicDefense() - item.getExtraMagicalDefense());
+            }
+        }
     }
 }

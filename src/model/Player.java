@@ -71,15 +71,17 @@ public class Player extends Character{
             System.out.println("Item " + k);
             System.out.println(i.name() + ": " + i.getRarity());
             if (i.getExtraDamage() != 0) System.out.println("Dano extra: " + i.getExtraDamage());
-            if (i.getExtraLife() != 0) System.out.println("Vida extra: " + i.getExtraDamage());
-            if (i.getExtraMagicalDefense() != 0) System.out.println("Defesa Mágica extra: " + i.getExtraDamage());
-            if (i.getExtraPhysicalDefense() != 0) System.out.println("Defesa Física extra: " + i.getExtraDamage());
+            if (i.getExtraLife() != 0) System.out.println("Vida extra: " + i.getExtraLife());
+            if (i.getExtraMagicalDefense() != 0) System.out.println("Defesa Mágica extra: " + i.getExtraMagicalDefense());
+            if (i.getExtraPhysicalDefense() != 0) System.out.println("Defesa Física extra: " + i.getExtraPhysicalDefense());
             k++;
         }
+        System.out.println();
     }
     
     public void itensOnBag(){
         itemList.forEach(System.out::println);
+        System.out.println();
     }
 
     public Item[] getEquipedItens() {

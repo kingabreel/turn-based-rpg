@@ -92,8 +92,11 @@ public class WindowGame {
                 gm.getPlayer().getItemList().add(item);
             }
         } else {
+            gm.addItemStats();
+
             gm.startBattle();
 
+            gm.removeItemStats();
             Item item = gm.itemAfterBattle();
 
             if (item != null) {
@@ -141,14 +144,21 @@ public class WindowGame {
                             System.out.print("\n" + "Qual item deseja equipar? ");
                             int itemChoice = scanner.nextInt();
 
+                            boolean isAlreadyEquiped = false;
+                            boolean automaticAdded = false;
+
                             for (int i = 0; i < gm.getPlayer().getEquipedItens().length; i++) {
-                                if (gm.getPlayer().getEquipedItens()[i] == null) {
-                                    gm.getPlayer().getEquipedItens()[i] = gm.getPlayer().getItemList().get(i);
+                                if (gm.getPlayer().getEquipedItens()[i] == gm.getPlayer().getItemList().get(itemChoice - 1)) isAlreadyEquiped = true;
+                            }
+                            for (int i = 0; i < gm.getPlayer().getEquipedItens().length; i++) {
+                                if (gm.getPlayer().getEquipedItens()[i] == null && !isAlreadyEquiped) {
+                                    gm.getPlayer().getEquipedItens()[i] = gm.getPlayer().getItemList().get(itemChoice - 1);
+                                    automaticAdded = true;
                                     break;
                                 }
-                                itemChoice = -1;
                             }
-                            if (itemChoice > 0 && itemChoice < gm.getPlayer().getItemList().size()) {
+
+                            if (itemChoice > 0 && itemChoice <= gm.getPlayer().getItemList().size() && !automaticAdded && !isAlreadyEquiped) {
                                 gm.getPlayer().equipedItens();
                                 System.out.println("Qual item deseja substituir por " + gm.getPlayer().getItemList().get(itemChoice - 1));
 
